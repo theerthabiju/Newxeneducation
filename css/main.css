@@ -2624,7 +2624,7 @@ input.main-search-input::placeholder {
   width: 100%;
   height: 100%;
   content: "";
-  background: linear-gradient(89deg, rgba(0, 85, 255, 0.75) 15.79%, rgba(163, 71, 255, 0.75) 91.12%);
+  background: linear-gradient(89deg, rgba(0, 55, 165, 0.75) 15.79%, rgba(255, 255, 255, 0.75) 91.12%);
   z-index: -1;
 }
 
@@ -8017,7 +8017,12 @@ padding: 10px;
   padding-top: 70px;
   padding-bottom: 260px;
 }
-
+.process-1 .shape-51 {
+    position: absolute;
+    bottom: 8.5%;
+    left: 49.5%;
+    -webkit-animation: leftToRight 3s infinite linear;
+    animation: leftToRight 3s infinite linear;}
 @media (max-width: 1399px) {
   .process-1 .process-items {
     -ms-grid-columns: auto auto;
