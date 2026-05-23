@@ -1,0 +1,148 @@
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 20, 50, 0.45);
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+.modal-overlay.active {
+  display: flex;
+}
+
+.xen-apply-card {
+  position: relative; /* needed for close button */
+  width: 100%;
+  max-width: 520px;
+  background: linear-gradient(
+    153deg,
+    rgba(187, 227, 240, 0.466) 29%,
+    rgba(255, 255, 255, 0.97) 69%
+  );
+  border-radius: 28px;
+  padding: 36px 30px 28px;
+  box-shadow: 0 8px 48px rgba(20, 60, 140, 0.18);
+  border: 1px solid rgba(180, 210, 240, 0.253);
+}
+
+.modal-close {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  color: #ffffff;
+  background-color:#0B6EDA ;
+  line-height: 1;
+  padding: 5px;
+  border-radius: 20%;
+}
+.modal-close:hover {
+  color: #222;
+}
+
+@media (max-width: 575px) {
+  .header-button .theme-btn.black-btn {
+    font-size: 9px;
+    padding: 8px 14px;
+  }
+}
+
+    /* ---- Right Side: Apply Form ---- */
+ 
+    .xen-banner-right {
+      width: 50%;
+      flex-shrink: 0;
+    }
+
+
+    .xen-form-title {
+      font-size: 34px;
+      font-weight: 800;
+      color: #000000;
+      margin-bottom: 5px;
+    }
+
+    .xen-form-tagline {
+      font-size: 14px;
+      color: #000000;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    .xen-form-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 13px;
+    }
+
+    .xen-form-field {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      gap: 5px;
+    }
+
+    .xen-form-field label {
+      font-size: 14px;
+      font-weight: 600;
+      color: #003372;
+      letter-spacing: 0.3px;
+    }
+
+    .xen-form-field input,
+    .xen-form-field select {
+      border: 1.5px solid #d8e3f280;
+      border-radius: 4px;
+      padding: 9px 11px;
+      font-size: 12.5px;
+      color: #1a2a4a;
+      background: #ffffff;
+      outline: none;
+      width: 100%;
+      transition: border-color 0.18s;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    .xen-form-field input[type="date"] {
+      color: #aab4cc;
+    }
+
+    .xen-form-field select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24'%3E%3Cpath fill='%236b7a99' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      padding-right: 28px;
+    }
+
+    .xen-form-field input:focus,
+    .xen-form-field select:focus {
+      border-color: #2d8eef;
+    }
+
+    .xen-form-field input::placeholder {
+      color: #202946;
+    }
+
+    .xen-apply-btn {
+      width: 100%;
+      background: #0a52bf;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 800;
+      padding: 15px;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+      letter-spacing: 1.5px;
+      margin-top: 4px;
+      transition: background 0.2s;
+    }
+
+    .xen-apply-btn:hover {
+      background: #1b3a7a;
+    }
