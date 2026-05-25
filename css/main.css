@@ -11,7 +11,7 @@
   --theme: #3FB5FD;
   --theme-2: #0B6EDA;
   --theme-3: #0E1449;
-  --theme-4: #A347FF;
+  --theme-4: #4759ff;
   --header: #000D27;
   --base: #C7D31C;
   --text: #49515B;
@@ -12423,4 +12423,16 @@ footer .gallery .footer-gallery-img:hover .content {
     right: 58%;
     z-index: 10;
 }
+}
+
+
+
+.duration-list{
+  text-align: start;
+   
+}
+.duration-list i{
+  text-align: start;
+      color: var(--theme-2);
+    padding-right: 10px;
 }
