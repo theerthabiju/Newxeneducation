@@ -744,5 +744,8 @@
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') document.getElementById('applyModal').classList.remove('active');
 });
+
+
+   
 // End jQuery
 

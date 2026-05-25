@@ -1,11 +1,4 @@
-/*
-Theme Name: Zotech
-Author: ModinaTheme
-Author URI: https://themeforest.net/user/modinatheme/
-Description: IT Solutions & Technology HTML Template
-Version: 1.0.0
-*/
-/*CSS Table Of Content Ends Here*/
+
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
 :root {
@@ -101,7 +94,9 @@ Version: 1.0.0
 .theme-btn.black-btn:hover {
   color: var(--white);
 }
-
+.sted-p{
+  font-size: 12px;
+}
 .theme-btn::before, .theme-btn::after {
   content: "";
   width: 50%;
@@ -276,7 +271,7 @@ a {
 
 p {
   color: var(--text);
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 500;
   line-height: 30px;
   margin: 0px;
