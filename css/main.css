@@ -12834,30 +12834,7 @@ footer .gallery .footer-gallery-img:hover .content {
   overflow: hidden;
 }
 
-/* Background decoration */
-.creative-section04::before {
-  content: '';
-  position: absolute;
-  width: 500px;
-  height: 500px;
-  border-radius: 50%;
-  background: rgba(37, 99, 214, 0.15);
-  top: -150px;
-  right: -150px;
-  pointer-events: none;
-}
 
-.creative-section04::after {
-  content: '';
-  position: absolute;
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
-  background: rgba(37, 99, 214, 0.1);
-  bottom: -100px;
-  left: -80px;
-  pointer-events: none;
-}
 
 .creative-section04 h1 {
   font-size: 46px;
@@ -13007,5 +12984,542 @@ footer .gallery .footer-gallery-img:hover .content {
 
   .count-item .count-number {
     font-size: 32px;
+  }
+}
+
+/* module tab css */
+/* ----- Module List Section ----- */
+.creative-section6 {
+  padding: 80px 0;
+  background: #f8f9ff;
+}
+
+.creative-section6 h1 {
+  font-size: 46px;
+  font-weight: 800;
+  color: #020842;
+  margin-bottom: 10px;
+}
+
+.creative-section6 .section-sub {
+  text-align: center;
+  color: #777;
+  font-size: 16px;
+  margin-bottom: 50px;
+}
+
+/* Tab buttons */
+.tab-container {
+  background: #ffffff;
+  border-radius: 24px;
+  box-shadow: 0 4px 30px rgba(2, 8, 66, 0.07);
+  overflow: hidden;
+}
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  background: #020842;
+  gap: 0;
+}
+
+.tabs button {
+  flex: 1;
+  padding: 18px 20px;
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  white-space: nowrap;
+}
+
+.tabs button::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 3px;
+  background: #2563d6;
+  border-radius: 3px 3px 0 0;
+  transition: width 0.3s ease;
+}
+
+.tabs button:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.tabs button.active {
+  color: #ffffff;
+  background: rgba(37, 99, 214, 0.2);
+}
+
+.tabs button.active::after {
+  width: 60%;
+}
+
+/* Tab content */
+.tab-content {
+  display: none;
+  padding: 40px;
+  animation: fadeTab 0.3s ease;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+@keyframes fadeTab {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.tab-content h3 {
+  font-size: 24px;
+  font-weight: 800;
+  color: #020842;
+  margin-bottom: 6px;
+}
+
+.tab-content .module-meta {
+  font-size: 13px;
+  color: #2563d6;
+  font-weight: 600;
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Module grid cards */
+.module-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 14px;
+}
+
+.module-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  background: #f8f9ff;
+  border-radius: 12px;
+  border: 1.5px solid #eef0fa;
+  transition: all 0.25s ease;
+  cursor: default;
+}
+
+.module-item:hover {
+  background: #eef2ff;
+  border-color: #2563d6;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37, 99, 214, 0.1);
+}
+
+.module-item .module-num {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: #020842;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.25s ease;
+}
+
+.module-item:hover .module-num {
+  background: #2563d6;
+}
+
+.module-item .module-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #020842;
+  line-height: 1.3;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .tabs button {
+    flex: unset;
+    width: 50%;
+    font-size: 12px;
+    padding: 14px 10px;
+  }
+
+  .tab-content {
+    padding: 24px 20px;
+  }
+
+  .module-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+
+  .creative-section6 h1 {
+    font-size: 32px;
+  }
+}
+
+/* other sections */
+/* ===== SECTION 7: What Makes Us Different ===== */
+.creative-section7 {
+  padding: 90px 0;
+  background: #ffffff;
+}
+
+.creative-section7 h1 {
+  font-size: 42px;
+  font-weight: 800;
+  color: #020842;
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+.creative-section7 h5 {
+  font-size: 16px;
+  color: #2563d6;
+  font-weight: 600;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.different-img-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.different-img-wrap img {
+  width: 100%;
+  max-width: 440px;
+  border-radius: 20px;
+}
+
+.different-img-wrap .img-badge {
+  position: absolute;
+  bottom: 24px;
+  right: -20px;
+  background: #2563d6;
+  color: #fff;
+  border-radius: 14px;
+  padding: 14px 20px;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(37,99,214,0.3);
+}
+
+.different-img-wrap .img-badge strong {
+  display: block;
+  font-size: 28px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.different-img-wrap .img-badge span {
+  font-size: 12px;
+  opacity: 0.85;
+}
+
+/* Accordion */
+.accordion-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.accordion-item {
+  border: 1.5px solid #eef0fa;
+  border-radius: 14px;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+}
+
+.accordion-item.open {
+  box-shadow: 0 6px 24px rgba(37,99,214,0.1);
+  border-color: #2563d6;
+}
+
+.accordion-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 20px;
+  cursor: pointer;
+  background: #ffffff;
+  transition: background 0.2s ease;
+}
+
+.accordion-item.open .accordion-header {
+  background: #f0f4ff;
+}
+
+.accordion-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: #eef2ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.3s ease;
+}
+
+.accordion-item.open .accordion-icon {
+  background: #2563d6;
+}
+
+.accordion-icon i {
+  font-size: 16px;
+  color: #2563d6;
+  transition: color 0.3s ease;
+}
+
+.accordion-item.open .accordion-icon i {
+  color: #ffffff;
+}
+
+.accordion-header h6 {
+  flex: 1;
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: #020842;
+}
+
+.accordion-arrow {
+  font-size: 14px;
+  color: #aaa;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.accordion-item.open .accordion-arrow {
+  transform: rotate(180deg);
+  color: #2563d6;
+}
+
+.accordion-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.3s ease;
+  padding: 0 20px;
+  font-size: 14px;
+  line-height: 1.8;
+  color: #555;
+}
+
+.accordion-item.open .accordion-body {
+  max-height: 200px;
+  padding: 0 20px 18px 72px;
+}
+
+/* ===== SECTION 8: What You'll Gain ===== */
+.creative-section8 {
+  padding: 90px 0;
+  background: #020842;
+  position: relative;
+  overflow: hidden;
+}
+
+
+
+.creative-section8 .gain-heading {
+  text-align: center;
+  margin-bottom: 55px;
+}
+
+.creative-section8 .gain-heading h1 {
+  font-size: 42px;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.creative-section8 .gain-heading p {
+  color: rgba(255,255,255,0.55);
+  font-size: 16px;
+}
+
+.gain-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.gain-card-new {
+  background: rgba(255,255,255,0.05);
+  border: 1.5px solid rgba(255,255,255,0.1);
+  border-radius: 20px;
+  padding: 32px 28px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+
+
+.gain-card-new:hover {
+  background: rgba(37,99,214,0.15);
+  border-color: rgba(37,99,214,0.4);
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.2);
+}
+
+.gain-card-new:hover::before {
+  transform: scaleX(1);
+}
+
+.gain-card-img {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  background: rgba(37,99,214,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.gain-card-img img {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+}
+
+.gain-card-new h4 {
+  font-size: 17px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+
+.gain-card-new p {
+  font-size: 14px;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.6);
+  margin: 0;
+}
+
+/* ===== SECTION 10: Internship ===== */
+.creative-section10 {
+  padding: 90px 0;
+  background: #f8f9ff;
+}
+
+.internship-intro {
+  text-align: center;
+  max-width: 650px;
+  margin: 0 auto 60px;
+}
+
+.internship-intro h1 {
+  font-size: 42px;
+  font-weight: 800;
+  color: #020842;
+  margin-bottom: 16px;
+}
+
+.internship-intro p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #555;
+}
+
+.internship-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.internship-card {
+  background: #ffffff;
+  border: 1.5px solid #eef0fa;
+  border-radius: 16px;
+  padding: 24px 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  transition: all 0.3s ease;
+}
+
+.internship-card:hover {
+  border-color: #2563d6;
+  box-shadow: 0 8px 28px rgba(37,99,214,0.12);
+  transform: translateY(-4px);
+}
+
+.internship-card .ic-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: #eef2ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.3s ease;
+}
+
+.internship-card:hover .ic-icon {
+  background: #2563d6;
+}
+
+.internship-card .ic-icon i {
+  font-size: 18px;
+  color: #2563d6;
+  transition: color 0.3s ease;
+}
+
+.internship-card:hover .ic-icon i {
+  color: #ffffff;
+}
+
+.internship-card .ic-text {
+  font-size: 14px;
+  font-weight: 700;
+  color: #020842;
+  line-height: 1.4;
+  padding-top: 10px;
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+  .gain-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .creative-section7 h1,
+  .creative-section8 .gain-heading h1,
+  .internship-intro h1 {
+    font-size: 30px;
+  }
+
+  .gain-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .different-img-wrap .img-badge {
+    right: 0;
   }
 }
