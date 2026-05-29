@@ -1,204 +1,447 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>List of Certifications</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet"/>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Full Stack Choices</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: #fff;
-    }
+  :root {
+    --py: #1D9E75;
+    --py-light: #E1F5EE;
+    --py-mid: #5DCAA5;
+    --js: #378ADD;
+    --js-light: #E6F1FB;
+    --js-mid: #85B7EB;
+    --bg: #0c0c0f;
+    --surface: #13131a;
+    --border: rgba(255,255,255,0.07);
+    --border-hover: rgba(255,255,255,0.14);
+    --text: #f0eff5;
+    --muted: #6b6a78;
+    --subtle: #2a2935;
+  }
 
-    .cert-section {
-      padding: 5rem 2rem;
-      text-align: center;
-      background: #fff;
-    }
+  body {
+    font-family: 'Space Grotesk', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 64px 24px 80px;
+    overflow-x: hidden;
+  }
 
-    .cert-section h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.2rem;
-      font-weight: 600;
-      color: #1a1a1a;
-      margin-bottom: 1rem;
-    }
+  /* === BACKGROUND GRID === */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+    z-index: 0;
+  }
 
-    .cert-section p {
-      font-size: 15px;
-      color: #666;
-      max-width: 580px;
-      margin: 0 auto 3.5rem;
-      line-height: 1.75;
-    }
+  .page { position: relative; z-index: 1; max-width: 1080px; margin: 0 auto; }
 
-    .cert-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1.25rem;
-      max-width: 860px;
-      margin: 0 auto;
-    }
+  /* === HEADER === */
+  .header { text-align: center; margin-bottom: 56px; }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 16px;
+  }
+  .eyebrow::before, .eyebrow::after {
+    content: ''; display: block; width: 28px; height: 1px; background: var(--muted);
+  }
+  .header h1 {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(42px, 7vw, 72px);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 0.95;
+    color: var(--text);
+  }
+  .header h1 em {
+    font-style: italic;
+    background: linear-gradient(135deg, var(--py-mid), var(--js-mid));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
 
-    .cert-card {
-      background: #fff;
-      border: 1px solid #e8e8e8;
-      border-radius: 14px;
-      padding: 2rem 1rem 1.5rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-      cursor: default;
-    }
+  /* === GRID === */
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
 
-    .cert-card:hover {
-      border-color: #ccc;
-      transform: translateY(-3px);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.07);
-    }
+  /* === PANEL === */
+  .panel {
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    background: var(--surface);
+    overflow: hidden;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+    position: relative;
+  }
+  .panel:hover { transform: translateY(-3px); }
+  .panel.py:hover { border-color: rgba(29,158,117,0.35); }
+  .panel.js:hover { border-color: rgba(55,138,221,0.35); }
 
-    .cert-logo {
-      height: 48px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+  /* Accent glow top */
+  .panel::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  }
+  .panel.py::before { background: linear-gradient(90deg, transparent, var(--py), transparent); }
+  .panel.js::before { background: linear-gradient(90deg, transparent, var(--js), transparent); }
 
-    .cert-name {
-      font-size: 12px;
-      font-weight: 500;
-      color: #888;
-      letter-spacing: 0.02em;
-    }
+  /* === PANEL HEAD === */
+  .panel-head {
+    padding: 28px 28px 22px;
+    display: flex; align-items: flex-start; justify-content: space-between; gap: 16px;
+  }
+  .panel-head-left { flex: 1; }
 
-    @media (max-width: 700px) {
-      .cert-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
+  .lang-chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase;
+    padding: 4px 10px; border-radius: 6px; margin-bottom: 12px;
+  }
+  .py .lang-chip { background: rgba(29,158,117,0.15); color: var(--py-mid); border: 1px solid rgba(29,158,117,0.25); }
+  .js .lang-chip { background: rgba(55,138,221,0.15); color: var(--js-mid); border: 1px solid rgba(55,138,221,0.25); }
 
-    @media (max-width: 400px) {
-      .cert-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-  </style>
+  .lang-chip .dot {
+    width: 5px; height: 5px; border-radius: 50%;
+  }
+  .py .lang-chip .dot { background: var(--py); }
+  .js .lang-chip .dot { background: var(--js); }
+
+  .panel-name {
+    font-size: 26px; font-weight: 600; letter-spacing: -0.02em; line-height: 1;
+    color: var(--text);
+  }
+  .panel-sub { font-size: 13px; color: var(--muted); margin-top: 5px; }
+
+  .topic-count {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 8px; padding: 5px 10px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* === DIVIDER === */
+  .divider { height: 1px; background: var(--border); margin: 0 28px; }
+
+  /* === ITEMS === */
+  .items { padding: 14px; }
+
+  .group { margin-bottom: 6px; }
+  .group-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--muted); padding: 6px 10px 4px;
+  }
+
+  .item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 8px 10px; border-radius: 10px;
+    cursor: default; transition: background 0.15s;
+  }
+  .item:hover { background: rgba(255,255,255,0.04); }
+
+  .item-icon {
+    width: 26px; height: 26px; flex-shrink: 0;
+    border-radius: 6px; display: flex; align-items: center; justify-content: center;
+  }
+  .py .item-icon { background: rgba(29,158,117,0.12); }
+  .js .item-icon { background: rgba(55,138,221,0.12); }
+
+  .item-icon svg { width: 13px; height: 13px; }
+  .py .item-icon svg { stroke: var(--py-mid); }
+  .js .item-icon svg { stroke: var(--js-mid); }
+
+  .item-text { font-size: 13px; color: #c8c7d4; flex: 1; line-height: 1.3; }
+  .item:hover .item-text { color: var(--text); }
+
+  .tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; font-weight: 400;
+    padding: 2px 7px; border-radius: 5px; flex-shrink: 0;
+  }
+  .py .tag { background: rgba(29,158,117,0.12); color: var(--py-mid); }
+  .js .tag { background: rgba(55,138,221,0.12); color: var(--js-mid); }
+
+  /* === FOOTER BAR === */
+  .panel-foot {
+    margin: 6px 14px 14px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 14px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(255,255,255,0.02);
+  }
+  .foot-label { font-size: 12px; color: var(--muted); }
+  .foot-bar {
+    display: flex; gap: 3px;
+  }
+  .foot-pip {
+    width: 18px; height: 4px; border-radius: 2px;
+  }
+  .py .foot-pip { background: rgba(29,158,117,0.35); }
+  .py .foot-pip.active { background: var(--py); }
+  .js .foot-pip { background: rgba(55,138,221,0.35); }
+  .js .foot-pip.active { background: var(--js); }
+
+  /* === RESPONSIVE === */
+  @media (max-width: 700px) {
+    .grid { grid-template-columns: 1fr; }
+    .header h1 { font-size: 40px; }
+  }
+
+  /* === ENTRANCE ANIMATIONS === */
+  .panel { animation: fadeUp 0.5s ease both; }
+  .panel:nth-child(2) { animation-delay: 0.1s; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+</style>
 </head>
 <body>
+<div class="page">
 
-<section class="cert-section">
-  <h2>List of Certifications</h2>
-  <p>At Xen Education, we provide comprehensive training to help students achieve industry-recognized certifications. Our offerings with industry giants will give them the credentials to excel in their chosen fields.</p>
+  <div class="header">
+    <div class="eyebrow">technology overview</div>
+    <h1>Full <em>Stack</em><br>Choices</h1>
+  </div>
 
-  <div class="cert-grid">
+  <div class="grid">
 
-    <!-- Google Ads -->
-    <div class="cert-card">
-      <div class="cert-logo">
-        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <polygon points="24,6 40,34 24,34" fill="#4285F4"/>
-          <polygon points="8,34 24,6 24,34" fill="#FBBC04"/>
-          <circle cx="24" cy="40" r="6" fill="#34A853"/>
-        </svg>
+    <!-- Python -->
+    <div class="panel py">
+      <div class="panel-head">
+        <div class="panel-head-left">
+          <div class="lang-chip"><span class="dot"></span>Python</div>
+          <div class="panel-name">Backend & Data</div>
+          <div class="panel-sub">Versatile &amp; data-driven</div>
+        </div>
+        <div class="topic-count">18 topics</div>
       </div>
-      <span class="cert-name">Google Ads</span>
+      <div class="divider"></div>
+      <div class="items">
+
+        <div class="group">
+          <div class="group-label">Core</div>
+          <div class="item">
+            <div class="item-icon"><svg viewBox="0 0 16 16" fill="none" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 4v4l3 2"/></svg></div>
+            <span class="item-text">Python</span><span class="tag">core</span>
+          </div>
+          <div class="item">
+            <div class="item-icon"><svg viewBox="0 0 16 16" fill="none" stroke-width="1.5"><rect x="2" y="3" width="12" height="10" rx="2"/><path d="M5 7h6M5 10h4"/></svg></div>
+            <span class="item-text">Django</span><span class="tag">framework</span>
+          </div>
+        </div>
+
+        <div class="group">
+          <div class="group-label">Functions & Types</div>
+          <div class="item">
+            <div class="item-icon"><svg viewBox="0 0 16 16" fill="none" stroke-width="1.5"><rect x="2" y="2" width="5" height="5" rx="1"/><rect x="9" y="2" width="5" height="5" rx="1"/><rect x="2" y="9" width="5" height="5" rx="1"/><rect x="9" y="9" width="5" height="5" rx="1"/></svg></div>
+            <span class="item-text">Python packages</span>
+          </div>
+          <div class="item">
+            <div class="item-icon"><svg viewBox="0 0 16 16" fill="none" stroke-width="1.5"><path d="M4 8h8M8 4l4 4-4 4"/></svg></div>
+            <span class="item-text">Library functions</span>
+          </div>
+          <div class="item">
+            <div class="item-icon"><svg viewBox="0 0 16 16" fill="none" stroke-width="1.5"><path d="M3 13L8 3l5 10M5.5 9h5"/></svg></div>
+            <span class="item-text">Numeric &amp; maths module</span>
+          </div>
+          <div class="item">
+            <div class="item-icon"><svg viewBox="0 0 16 16" fill="none" stroke-width="1.5"><path d="M2 8h12M8 2v12"/></svg></div>
+            <span class="item-text">Built-in functions</span>
+          </div>
+          <div class="item">
+            <div class="item-icon"><svg viewBox="0 0 16 16" fill="none" stroke-width="1.5"><path d="M3 5h10M3 8h7M3 11h5"/></svg></div>
+            <span class="item-text">String / list / dict / tuple</span>
+          </div>
+          <div class="item">
+            <div class="item-icon"><svg viewBox="0 0 16 16" fill="none" stroke-width="1.5"><path d="M4 12l3-8 2 5 2-3 1 3"/></svg></div>
+            <span class="item-text">Lambda &amp; anonymous functions</span>
+          </div>
+        </div>
+
+        <div class="group">
+          <div class="group-label">OOP & Advanced</div>
+          <div class="item">
+            <div class="item-icon"><svg viewBox="0 0 16 16" fill="none" stroke-width="1.5"><circle cx="8" cy="5" r="2.5"/><path d="M4 13c0-2.2 1.8-4 4-4s4 1.8 4 4"/></svg></div>
+            <span class="item-text">Object-oriented Python</span>
+          </div>
+          <div class="item">
+            <div class="item-icon"><svg viewBox="0 0 16 16" fill="none" stroke-width="1.5"><path d="M8 3v4M8 7l-3 3M8 7l3 3"/></svg></div>
+            <span class="item-text">Inheritance &amp; polymorphism</span>
+          </div>
+          <div class="item">
+            <div class="item-icon"><svg viewBox="0 0 16 16" fill="none" stroke-width="1.5"><rect x="3" y="3" width="10" height="10" rx="2"/><path d="M6 8h4M8 6v4"/></svg></div>
+            <span class="item-text">Overriding &amp; data hiding</span>
+          </div>
+          <div class="item">
+            <div class="item-icon"><svg viewBox="0 0 16 16" fill="none" stroke-width="1.5"><path d="M5 3h6l1 3H4L5 3zM4 6v2a4 4 0 008 0V6"/></svg></div>
+            <span class="item-text">Decorators</span>
+          </div>
+          <div class="item">
+            <div class="item-icon"><svg viewBox="0 0 16 16" fill="none" stroke-width="1.5"><path d="M3 8c0-3 2-5 5-5s5 2 5 5-2 5-5 5"/><path d="M8 5v3l2 2"/></svg></div>
+            <span class="item-text">Generators</span>
+          </div>
+          <div class="item">
+            <div class="item-icon"><svg viewBox="0 0 16 16" fill="none" stroke-width="1.5"><path d="M3 5h2l2 6 2-6 2 6 2-6h2" stroke-linejoin="round"/></svg></div>
+            <span class="item-text">Regular expressions</span>
+          </div>
+        </div>
+
+        <div class="group">
+          <div class="group-label">Database</div>
+          <div class="item">
+            <div class="item-icon"><svg viewBox="0 0 16 16" fill="none" stroke-width="1.5"><ellipse cx="8" cy="5" rx="5" ry="2"/><path d="M3 5v6c0 1.1 2.2 2 5 2s5-.9 5-2V5"/><path d="M3 8c0 1.1 2.2 2 5 2s5-.9 5-2"/></svg></div>
+            <span class="item-text">MySQL</span><span class="tag">db</span>
+          </div>
+          <div class="item">
+            <div class="item-icon"><svg viewBox="0 0 16 16" fill="none" stroke-width="1.5"><ellipse cx="8" cy="5" rx="5" ry="2"/><path d="M3 5v6c0 1.1 2.2 2 5 2s5-.9 5-2V5"/><path d="M3 8c0 1.1 2.2 2 5 2s5-.9 5-2"/></svg></div>
+            <span class="item-text">SQLite</span><span class="tag">db</span>
+          </div>
+        </div>
+
+      </div>
+      <div class="panel-foot">
+        <span class="foot-label">Backend coverage</span>
+        <div class="foot-bar">
+          <div class="foot-pip active"></div>
+          <div class="foot-pip active"></div>
+          <div class="foot-pip active"></div>
+          <div class="foot-pip active"></div>
+          <div class="foot-pip active"></div>
+          <div class="foot-pip"></div>
+        </div>
+      </div>
     </div>
 
-    <!-- Google Analytics -->
-    <div class="cert-card">
-      <div class="cert-logo">
-        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="6"  y="28" width="10" height="14" rx="2" fill="#E37400" opacity="0.4"/>
-          <rect x="19" y="18" width="10" height="24" rx="2" fill="#E37400" opacity="0.7"/>
-          <rect x="32" y="6"  width="10" height="36" rx="2" fill="#E37400"/>
-        </svg>
+    <!-- Node.js -->
+    <div class="panel js">
+      <div class="panel-head">
+        <div class="panel-head-left">
+          <div class="lang-chip"><span class="dot"></span>Node.js</div>
+          <div class="panel-name">Runtime & Ecosystem</div>
+          <div class="panel-sub">JavaScript across the stack</div>
+        </div>
+        <div class="topic-count">18 topics</div>
       </div>
-      <span class="cert-name">Google Analytics</span>
-    </div>
+      <div class="divider"></div>
+      <div class="items">
 
-    <!-- Google Digital Garage -->
-    <div class="cert-card">
-      <div class="cert-logo">
-        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="4"  y="4"  width="18" height="18" rx="2" fill="#4285F4"/>
-          <rect x="26" y="4"  width="18" height="18" rx="2" fill="#EA4335"/>
-          <rect x="4"  y="26" width="18" height="18" rx="2" fill="#FBBC05"/>
-          <rect x="26" y="26" width="18" height="18" rx="2" fill="#34A853"/>
-        </svg>
-      </div>
-      <span class="cert-name">Google Digital Garage</span>
-    </div>
+        <div class="group">
+          <div class="group-label">Core Stack</div>
+          <div class="item">
+            <div class="item-icon"><svg viewBox="0 0 16 16" fill="none" stroke-width="1.5"><polygon points="8,2 14,5.5 14,10.5 8,14 2,10.5 2,5.5"/></svg></div>
+            <span class="item-text">Node.js</span><span class="tag">runtime</span>
+          </div>
+          <div class="item">
+            <div class="item-icon"><svg viewBox="0 0 16 16" fill="none" stroke-width="1.5"><ellipse cx="8" cy="5" rx="5" ry="2"/><path d="M3 5v6c0 1.1 2.2 2 5 2s5-.9 5-2V5"/></svg></div>
+            <span class="item-text">MongoDB</span><span class="tag">database</span>
+          </div>
+          <div class="item">
+            <div class="item-icon"><svg viewBox="0 0 16 16" fill="none" stroke-width="1.5"><path d="M2 8h12M8 2v12M5 4l3 4 3-4M5 12l3-4 3 4"/></svg></div>
+            <span class="item-text">Express.js</span><span class="tag">framework</span>
+          </div>
+          <div class="item">
+            <div class="item-icon"><svg viewBox="0 0 16 16" fill="none" stroke-width="1.5"><circle cx="8" cy="8" r="5.5"/><path d="M5 8c0-1.7 1.3-3 3-3s3 1.3 3 3-1.3 3-3 3"/></svg></div>
+            <span class="item-text">React.js</span><span class="tag">ui</span>
+          </div>
+        </div>
 
-    <!-- Microsoft Advertising -->
-    <div class="cert-card">
-      <div class="cert-logo">
-        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="4"  y="4"  width="18" height="18" fill="#F25022"/>
-          <rect x="26" y="4"  width="18" height="18" fill="#7FBA00"/>
-          <rect x="4"  y="26" width="18" height="18" fill="#00A4EF"/>
-          <rect x="26" y="26" width="18" height="18" fill="#FFB900"/>
-        </svg>
-      </div>
-      <span class="cert-name">Microsoft Advertising</span>
-    </div>
+        <div class="group">
+          <div class="group-label">Libraries</div>
+          <div class="item">
+            <div class="item-icon"><svg viewBox="0 0 16 16" fill="none" stroke-width="1.5"><path d="M4 4h8v8H4z"/><path d="M4 8h8M8 4v8"/></svg></div>
+            <span class="item-text">Mongoose</span>
+          </div>
+          <div class="item">
+            <div class="item-icon"><svg viewBox="0 0 16 16" fill="none" stroke-width="1.5"><path d="M3 8h10M10 5l3 3-3 3"/></svg></div>
+            <span class="item-text">Axios</span>
+          </div>
+          <div class="item">
+            <div class="item-icon"><svg viewBox="0 0 16 16" fill="none" stroke-width="1.5"><path d="M5 4h6M4 8h8M5 12h6"/></svg></div>
+            <span class="item-text">Redux</span>
+          </div>
+          <div class="item">
+            <div class="item-icon"><svg viewBox="0 0 16 16" fill="none" stroke-width="1.5"><path d="M11 6a3 3 0 11-6 0 3 3 0 016 0zM5 13a4 4 0 018 0"/></svg></div>
+            <span class="item-text">Passport</span>
+          </div>
+          <div class="item">
+            <div class="item-icon"><svg viewBox="0 0 16 16" fill="none" stroke-width="1.5"><rect x="3" y="6" width="10" height="8" rx="1.5"/><path d="M6 6V4a2 2 0 014 0v2"/></svg></div>
+            <span class="item-text">JWT (JSON web tokens)</span>
+          </div>
+          <div class="item">
+            <div class="item-icon"><svg viewBox="0 0 16 16" fill="none" stroke-width="1.5"><path d="M3 8c0-2.8 2.2-5 5-5s5 2.2 5 5-2.2 5-5 5M8 5v3l2 1"/></svg></div>
+            <span class="item-text">Socket.io</span>
+          </div>
+        </div>
 
-    <!-- Semrush -->
-    <div class="cert-card">
-      <div class="cert-logo">
-        <svg width="56" height="32" viewBox="0 0 56 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="14" cy="16" r="12" fill="#FF642D"/>
-          <circle cx="14" cy="16" r="6"  fill="#fff"/>
-          <text x="30" y="21" font-family="DM Sans,sans-serif" font-weight="700" font-size="14" fill="#FF642D">SEM</text>
-        </svg>
-      </div>
-      <span class="cert-name">Semrush</span>
-    </div>
+        <div class="group">
+          <div class="group-label">Tooling</div>
+          <div class="item">
+            <div class="item-icon"><svg viewBox="0 0 16 16" fill="none" stroke-width="1.5"><rect x="2" y="4" width="12" height="9" rx="1.5"/><path d="M5 4V3a1 1 0 011-1h4a1 1 0 011 1v1"/></svg></div>
+            <span class="item-text">Webpack</span>
+          </div>
+          <div class="item">
+            <div class="item-icon"><svg viewBox="0 0 16 16" fill="none" stroke-width="1.5"><path d="M4 8h8M9 5l3 3-3 3"/></svg></div>
+            <span class="item-text">React Router</span>
+          </div>
+          <div class="item">
+            <div class="item-icon"><svg viewBox="0 0 16 16" fill="none" stroke-width="1.5"><path d="M3 12L8 4l5 8H3z"/></svg></div>
+            <span class="item-text">Babel</span>
+          </div>
+          <div class="item">
+            <div class="item-icon"><svg viewBox="0 0 16 16" fill="none" stroke-width="1.5"><circle cx="8" cy="8" r="5.5"/><path d="M6 6l4 4M10 6l-4 4"/></svg></div>
+            <span class="item-text">Styled-components</span>
+          </div>
+          <div class="item">
+            <div class="item-icon"><svg viewBox="0 0 16 16" fill="none" stroke-width="1.5"><path d="M8 3v7M5 7l3 3 3-3"/><path d="M3 13h10"/></svg></div>
+            <span class="item-text">Multer</span>
+          </div>
+          <div class="item">
+            <div class="item-icon"><svg viewBox="0 0 16 16" fill="none" stroke-width="1.5"><rect x="2" y="2" width="5" height="5" rx="1"/><rect x="9" y="2" width="5" height="5" rx="1"/><rect x="2" y="9" width="5" height="5" rx="1"/><rect x="9" y="9" width="5" height="5" rx="1"/></svg></div>
+            <span class="item-text">React UI frameworks</span>
+          </div>
+          <div class="item">
+            <div class="item-icon"><svg viewBox="0 0 16 16" fill="none" stroke-width="1.5"><circle cx="8" cy="8" r="5.5"/><path d="M4.5 8h7M8 4.5v7"/></svg></div>
+            <span class="item-text">SOAP / REST web services</span>
+          </div>
+        </div>
 
-    <!-- HubSpot -->
-    <div class="cert-card">
-      <div class="cert-logo">
-        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="34" cy="14" r="8" fill="#FF7A59"/>
-          <rect x="6"  y="14" width="6" height="22" rx="2" fill="#33475B"/>
-          <rect x="6"  y="21" width="18" height="6" rx="2" fill="#33475B"/>
-          <rect x="18" y="14" width="6" height="22" rx="2" fill="#33475B"/>
-        </svg>
       </div>
-      <span class="cert-name">HubSpot</span>
-    </div>
-
-    <!-- STED -->
-    <div class="cert-card">
-      <div class="cert-logo">
-        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="24" cy="24" r="20" fill="none" stroke="#c0392b" stroke-width="2.5"/>
-          <circle cx="24" cy="24" r="14" fill="none" stroke="#c0392b" stroke-width="1.5"/>
-          <text x="24" y="28" text-anchor="middle" font-family="DM Sans,sans-serif" font-weight="700" font-size="10" fill="#c0392b">STED</text>
-        </svg>
+      <div class="panel-foot">
+        <span class="foot-label">Full-stack coverage</span>
+        <div class="foot-bar">
+          <div class="foot-pip active"></div>
+          <div class="foot-pip active"></div>
+          <div class="foot-pip active"></div>
+          <div class="foot-pip active"></div>
+          <div class="foot-pip active"></div>
+          <div class="foot-pip active"></div>
+        </div>
       </div>
-      <span class="cert-name">STED Council</span>
-    </div>
-
-    <!-- Xen Certified -->
-    <div class="cert-card">
-      <div class="cert-logo">
-        <svg width="56" height="36" viewBox="0 0 56 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="2" y="2" width="52" height="32" rx="4" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
-          <text x="28" y="18" text-anchor="middle" font-family="DM Sans,sans-serif" font-weight="600" font-size="12" fill="#1a1a1a">Xen</text>
-          <text x="28" y="28" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" letter-spacing="1" fill="#888">CERTIFIED</text>
-        </svg>
-      </div>
-      <span class="cert-name">Xen Certified</span>
     </div>
 
   </div>
-</section>
-
+</div>
 </body>
 </html>
