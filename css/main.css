@@ -13173,6 +13173,7 @@ footer .gallery .footer-gallery-img:hover .content {
   text-align: center;
   background: #ffffff;
   box-shadow: 0 0 30px #eee;
+  height: 400px;
 }
 .rs-services.home12-style .services-item .services-image .services-icons {
   padding-bottom: 20px;
