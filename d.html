@@ -1,1376 +1,204 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Creative Graphics — Xen Education</title>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>List of Certifications</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet"/>
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    :root {
-      --ink: #0d0d0d;
-      --paper: #f5f0e8;
-      --cobalt: #1a3cff;
-      --cobalt-light: #4a6aff;
-      --rust: #e84c1e;
-      --sage: #2d6a4f;
-      --lemon: #f5e642;
-      --cream: #faf7f0;
-      --mid: #6b6b6b;
-      --font-display: 'Syne', sans-serif;
-      --font-body: 'DM Sans', sans-serif;
-      --font-mono: 'Space Mono', monospace;
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #fff;
     }
 
-    html { scroll-behavior: smooth; }
-    body { font-family: var(--font-body); background: var(--cream); color: var(--ink); overflow-x: hidden; }
-
-    /* ─── NAV ─── */
-    .topbar {
-      background: var(--ink);
-      color: #aaa;
-      font-size: 12px;
-      font-family: var(--font-mono);
-      padding: 8px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      letter-spacing: .04em;
-    }
-    .topbar a { color: #aaa; text-decoration: none; }
-    .topbar a:hover { color: var(--lemon); }
-    .topbar-socials a { margin-left: 14px; font-size: 14px; }
-
-    header {
-      background: var(--cream);
-      border-bottom: 2px solid var(--ink);
-      position: sticky; top: 0; z-index: 100;
-      padding: 0 40px;
-    }
-    .header-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 70px;
-    }
-    .logo-text {
-      font-family: var(--font-display);
-      font-weight: 800;
-      font-size: 22px;
-      letter-spacing: -.02em;
-      color: var(--ink);
-      text-decoration: none;
-    }
-    .logo-text span { color: var(--cobalt); }
-    nav ul { list-style: none; display: flex; gap: 32px; }
-    nav ul a { font-family: var(--font-body); font-size: 14px; font-weight: 500; color: var(--ink); text-decoration: none; letter-spacing: .01em; }
-    nav ul a:hover { color: var(--cobalt); }
-    .btn-apply {
-      background: var(--cobalt);
-      color: #fff;
-      font-family: var(--font-mono);
-      font-size: 12px;
-      letter-spacing: .06em;
-      padding: 10px 22px;
-      border: none;
-      cursor: pointer;
-      text-decoration: none;
-      text-transform: uppercase;
-      display: inline-block;
-      transition: background .2s;
-    }
-    .btn-apply:hover { background: var(--ink); }
-
-    /* ─── HERO ─── */
-    .hero {
-      min-height: 92vh;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      overflow: hidden;
-    }
-    .hero-left {
-      background: var(--ink);
-      color: var(--paper);
-      padding: 80px 60px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero-left::before {
-      content: '';
-      position: absolute;
-      width: 500px; height: 500px;
-      border-radius: 50%;
-      background: var(--cobalt);
-      opacity: .12;
-      top: -150px; left: -150px;
-    }
-    .hero-eyebrow {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: var(--lemon);
-      margin-bottom: 24px;
-    }
-    .hero-title {
-      font-family: var(--font-display);
-      font-size: clamp(52px, 5.5vw, 88px);
-      font-weight: 800;
-      line-height: .95;
-      letter-spacing: -.04em;
-    }
-    .hero-title em { font-style: normal; color: var(--lemon); }
-    .hero-sub {
-      margin-top: 28px;
-      font-size: 16px;
-      line-height: 1.7;
-      color: #b0b0b0;
-      max-width: 400px;
-    }
-    .hero-cta { margin-top: 40px; display: flex; gap: 16px; align-items: center; }
-    .btn-outline {
-      border: 1.5px solid rgba(255,255,255,.3);
-      color: #fff;
-      font-family: var(--font-mono);
-      font-size: 11px;
-      letter-spacing: .08em;
-      padding: 10px 20px;
-      text-decoration: none;
-      text-transform: uppercase;
-      transition: border-color .2s, color .2s;
-    }
-    .btn-outline:hover { border-color: var(--lemon); color: var(--lemon); }
-    .hero-right {
-      background: var(--cobalt);
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .hero-right::after {
-      content: 'DESIGN';
-      font-family: var(--font-display);
-      font-size: 180px;
-      font-weight: 800;
-      color: rgba(255,255,255,.06);
-      position: absolute;
-      bottom: -20px;
-      right: -20px;
-      white-space: nowrap;
-      letter-spacing: -.05em;
-    }
-    .hero-right img {
-      position: relative; z-index: 2;
-      max-width: 70%;
-      animation: float 4s ease-in-out infinite;
-    }
-    @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-16px); } }
-
-    /* ─── COURSE HIGHLIGHTS — DIAGONAL SPLIT ─── */
-    .highlights {
-      background: var(--paper);
-      padding: 100px 0 0;
-      position: relative;
-    }
-    .highlights-head {
+    .cert-section {
+      padding: 5rem 2rem;
       text-align: center;
-      padding: 0 40px 60px;
-    }
-    .section-label {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: var(--rust);
-      margin-bottom: 12px;
-    }
-    .section-title {
-      font-family: var(--font-display);
-      font-size: clamp(36px, 4vw, 60px);
-      font-weight: 800;
-      letter-spacing: -.03em;
-      line-height: 1;
-    }
-    .section-title em { font-style: normal; color: var(--cobalt); }
-    .highlight-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0;
-      border-top: 2px solid var(--ink);
-    }
-    .hl-card {
-      border-right: 2px solid var(--ink);
-      padding: 50px 36px;
-      position: relative;
-      overflow: hidden;
-      transition: background .3s;
-    }
-    .hl-card:last-child { border-right: none; }
-    .hl-card:hover { background: var(--ink); }
-    .hl-card:hover * { color: #fff !important; }
-    .hl-num {
-      font-family: var(--font-display);
-      font-size: 72px;
-      font-weight: 800;
-      letter-spacing: -.04em;
-      color: var(--ink);
-      line-height: 1;
-    }
-    .hl-unit {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      letter-spacing: .15em;
-      text-transform: uppercase;
-      color: var(--cobalt);
-      margin: 4px 0 20px;
-    }
-    .hl-title { font-family: var(--font-display); font-weight: 700; font-size: 18px; margin-bottom: 12px; }
-    .hl-desc { font-size: 14px; line-height: 1.65; color: var(--mid); }
-    .hl-icon {
-      position: absolute;
-      top: 50px; right: 36px;
-      font-size: 28px;
-      opacity: .12;
-    }
-    .highlights-cta {
-      text-align: center;
-      padding: 60px 0;
-      border-top: 2px solid var(--ink);
-      margin-top: 0;
+      background: #fff;
     }
 
-    /* ─── SKILLS SECTION — EDITORIAL GRID ─── */
-    .skills-section {
-      background: var(--cream);
-      padding: 120px 80px;
-      display: grid;
-      grid-template-columns: 280px 1fr;
-      gap: 80px;
-      align-items: start;
-      border-top: 2px solid var(--ink);
-    }
-    .skills-sticky {
-      position: sticky;
-      top: 100px;
-    }
-    .skills-sticky .section-label { margin-bottom: 20px; }
-    .skills-sticky h2 {
-      font-family: var(--font-display);
-      font-size: 40px;
-      font-weight: 800;
-      letter-spacing: -.03em;
-      line-height: 1.1;
-    }
-    .skills-sticky p { margin-top: 20px; font-size: 15px; line-height: 1.7; color: var(--mid); }
-    .skills-sticky img { margin-top: 36px; width: 100%; border: 2px solid var(--ink); }
-    .skills-content h2 {
-      font-family: var(--font-display);
-      font-size: 36px;
-      font-weight: 700;
-      letter-spacing: -.02em;
-      margin-bottom: 24px;
-    }
-    .skills-content p { font-size: 16px; line-height: 1.8; color: var(--mid); margin-bottom: 32px; }
-
-    /* ─── OPPORTUNITIES — FULL-BLEED ASYMMETRIC ─── */
-    .opp-header {
-      background: var(--rust);
-      color: #fff;
-      padding: 80px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .opp-header::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: repeating-linear-gradient(
-        45deg, transparent, transparent 40px,
-        rgba(255,255,255,.04) 40px, rgba(255,255,255,.04) 80px
-      );
-    }
-    .opp-header h2 {
-      font-family: var(--font-display);
-      font-size: clamp(42px, 5vw, 78px);
-      font-weight: 800;
-      letter-spacing: -.04em;
-      position: relative;
-    }
-    .opp-header p {
-      max-width: 600px;
-      margin: 20px auto 0;
-      font-size: 16px;
-      line-height: 1.7;
-      opacity: .8;
-      position: relative;
+    .cert-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 600;
+      color: #1a1a1a;
+      margin-bottom: 1rem;
     }
 
-    .opp-rows { border-top: 2px solid var(--ink); }
-    .opp-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      min-height: 480px;
-      border-bottom: 2px solid var(--ink);
-    }
-    .opp-row.reverse { direction: rtl; }
-    .opp-row.reverse > * { direction: ltr; }
-    .opp-img {
-      overflow: hidden;
-      position: relative;
-      background: #e0e0e0;
-    }
-    .opp-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; display: block; }
-    .opp-row:hover .opp-img img { transform: scale(1.04); }
-    .opp-text {
-      padding: 60px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-    .opp-row:nth-child(odd) .opp-text { background: var(--cream); }
-    .opp-row:nth-child(even) .opp-text { background: var(--ink); color: #fff; }
-    .opp-row:nth-child(even) .opp-num { color: rgba(255,255,255,.15); }
-    .opp-row:nth-child(even) .opp-desc { color: #aaa; }
-    .opp-num {
-      font-family: var(--font-mono);
-      font-size: 80px;
-      font-weight: 700;
-      color: rgba(0,0,0,.06);
-      line-height: 1;
-      margin-bottom: -10px;
-    }
-    .opp-title {
-      font-family: var(--font-display);
-      font-size: 32px;
-      font-weight: 800;
-      letter-spacing: -.02em;
-    }
-    .opp-role {
-      display: inline-block;
-      margin-top: 8px;
-      font-family: var(--font-mono);
-      font-size: 11px;
-      letter-spacing: .15em;
-      text-transform: uppercase;
-      color: var(--cobalt);
-      border: 1px solid var(--cobalt);
-      padding: 4px 10px;
-    }
-    .opp-row:nth-child(even) .opp-role { color: var(--lemon); border-color: var(--lemon); }
-    .opp-desc { margin-top: 20px; font-size: 15px; line-height: 1.75; }
-
-    /* ─── CAREER CHIPS ─── */
-    .careers {
-      background: var(--lemon);
-      padding: 100px 80px;
-      position: relative;
-      overflow: hidden;
-    }
-    .careers::before {
-      content: 'UNLIMITED';
-      font-family: var(--font-display);
-      font-size: 200px;
-      font-weight: 800;
-      color: rgba(0,0,0,.06);
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      white-space: nowrap;
-      letter-spacing: -.05em;
-    }
-    .careers-inner { position: relative; z-index: 1; }
-    .careers-inner h2 {
-      font-family: var(--font-display);
-      font-size: clamp(36px, 4vw, 62px);
-      font-weight: 800;
-      letter-spacing: -.03em;
-      margin-bottom: 48px;
-    }
-    .chips { display: flex; flex-wrap: wrap; gap: 12px; }
-    .chip {
-      background: var(--ink);
-      color: var(--lemon);
-      font-family: var(--font-mono);
-      font-size: 13px;
-      letter-spacing: .06em;
-      padding: 12px 24px;
-      border-radius: 0;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      cursor: default;
-      transition: background .2s, color .2s;
-    }
-    .chip:hover { background: var(--cobalt); color: #fff; }
-    .chip-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
-
-    /* ─── MODULES — DARK TABBED ─── */
-    .modules-section {
-      background: var(--ink);
-      color: #fff;
-      padding: 100px 80px;
-    }
-    .modules-section .section-label { color: var(--lemon); }
-    .modules-section .section-title { color: #fff; }
-    .mod-tabs {
-      display: flex;
-      gap: 0;
-      border: 1.5px solid rgba(255,255,255,.15);
-      margin-top: 48px;
-      overflow-x: auto;
-    }
-    .mod-tab {
-      flex: 1;
-      min-width: 120px;
-      padding: 16px 24px;
-      background: transparent;
-      color: rgba(255,255,255,.5);
-      border: none;
-      border-right: 1.5px solid rgba(255,255,255,.15);
-      font-family: var(--font-mono);
-      font-size: 11px;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: all .2s;
-    }
-    .mod-tab:last-child { border-right: none; }
-    .mod-tab.active, .mod-tab:hover { background: var(--cobalt); color: #fff; }
-    .mod-content { display: none; }
-    .mod-content.active { display: block; animation: fadeIn .3s ease; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
-    .mod-content h3 {
-      font-family: var(--font-display);
-      font-size: 28px;
-      font-weight: 700;
-      margin: 40px 0 28px;
-    }
-    .mod-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 2px;
-    }
-    .mod-item {
-      padding: 18px 20px;
-      background: rgba(255,255,255,.04);
-      border: 1px solid rgba(255,255,255,.07);
-      font-size: 14px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      transition: background .2s;
-    }
-    .mod-item:hover { background: rgba(255,255,255,.1); }
-    .mod-item-num {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      color: var(--cobalt-light);
-      min-width: 28px;
-    }
-
-    /* ─── WHAT MAKES US DIFFERENT — ACCORDION ─── */
-    .different-section {
-      background: var(--cream);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      min-height: 600px;
-      border-top: 2px solid var(--ink);
-    }
-    .diff-left {
-      background: var(--cobalt);
-      color: #fff;
-      padding: 80px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    .diff-left h2 {
-      font-family: var(--font-display);
-      font-size: 52px;
-      font-weight: 800;
-      letter-spacing: -.03em;
-      line-height: 1.05;
-    }
-    .diff-left p { font-size: 15px; line-height: 1.7; opacity: .8; max-width: 340px; margin-top: 16px; }
-    .diff-left img { max-width: 300px; margin-top: 40px; filter: brightness(1.1); }
-    .diff-right { padding: 60px; }
-    .diff-item {
-      border-bottom: 1.5px solid rgba(0,0,0,.1);
-      padding: 24px 0;
-    }
-    .diff-item:last-child { border-bottom: none; }
-    .diff-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      cursor: pointer;
-      gap: 16px;
-    }
-    .diff-header h4 {
-      font-family: var(--font-display);
-      font-size: 20px;
-      font-weight: 700;
-      letter-spacing: -.01em;
-    }
-    .diff-arrow {
-      font-size: 22px;
-      transition: transform .3s;
-      color: var(--cobalt);
-      flex-shrink: 0;
-    }
-    .diff-item.open .diff-arrow { transform: rotate(45deg); }
-    .diff-body {
-      display: none;
-      padding-top: 16px;
+    .cert-section p {
       font-size: 15px;
+      color: #666;
+      max-width: 580px;
+      margin: 0 auto 3.5rem;
       line-height: 1.75;
-      color: var(--mid);
-      max-width: 480px;
     }
-    .diff-item.open .diff-body { display: block; animation: fadeIn .25s ease; }
 
-    /* ─── GAIN CARDS — MAGAZINE STYLE ─── */
-    .gain-section {
-      background: var(--paper);
-      padding: 100px 80px;
-      border-top: 2px solid var(--ink);
-    }
-    .gain-section .section-label { color: var(--sage); }
-    .gain-head { margin-bottom: 60px; }
-    .gain-head h2 {
-      font-family: var(--font-display);
-      font-size: clamp(36px, 4vw, 60px);
-      font-weight: 800;
-      letter-spacing: -.03em;
-    }
-    .gain-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0;
-      border: 2px solid var(--ink);
-    }
-    .gain-card {
-      padding: 40px;
-      border-right: 2px solid var(--ink);
-      position: relative;
-      overflow: hidden;
-      transition: background .3s;
-    }
-    .gain-card:nth-child(3n) { border-right: none; }
-    .gain-card:nth-child(n+4) { border-top: 2px solid var(--ink); }
-    .gain-card:hover { background: var(--ink); }
-    .gain-card:hover * { color: #fff !important; }
-    .gain-card:hover .gain-num { color: rgba(255,255,255,.08) !important; }
-    .gain-num {
-      font-family: var(--font-display);
-      font-size: 64px;
-      font-weight: 800;
-      color: rgba(0,0,0,.05);
-      line-height: 1;
-      margin-bottom: -8px;
-    }
-    .gain-img { width: 48px; height: 48px; margin-bottom: 20px; }
-    .gain-card h3 { font-family: var(--font-display); font-size: 20px; font-weight: 700; margin-bottom: 14px; letter-spacing: -.01em; }
-    .gain-card p { font-size: 14px; line-height: 1.75; color: var(--mid); }
-
-    /* ─── INTERNSHIP ─── */
-    .internship {
-      background: var(--sage);
-      color: #fff;
-      padding: 100px 80px;
-    }
-    .intern-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-    }
-    .intern-left h2 {
-      font-family: var(--font-display);
-      font-size: 52px;
-      font-weight: 800;
-      letter-spacing: -.03em;
-      line-height: 1.05;
-    }
-    .intern-left p { margin-top: 20px; font-size: 16px; line-height: 1.7; opacity: .8; }
-    .intern-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 36px; }
-    .intern-tag {
-      padding: 10px 18px;
-      border: 1.5px solid rgba(255,255,255,.3);
-      font-family: var(--font-mono);
-      font-size: 12px;
-      letter-spacing: .06em;
-      transition: border-color .2s, background .2s;
-    }
-    .intern-tag:hover { border-color: var(--lemon); background: rgba(255,255,255,.05); }
-
-    /* ─── TESTIMONIALS ─── */
-    .testimonials {
-      background: var(--cream);
-      padding: 100px 0;
-      border-top: 2px solid var(--ink);
-      overflow: hidden;
-    }
-    .testimonials .section-label { text-align: center; }
-    .testimonials h2 {
-      font-family: var(--font-display);
-      font-size: clamp(32px, 4vw, 56px);
-      font-weight: 800;
-      letter-spacing: -.03em;
-      text-align: center;
-      margin: 12px 0 60px;
-    }
-    .swiper { padding: 0 80px 60px !important; }
-    .testimonial-card {
-      background: var(--ink);
-      color: #fff;
-      padding: 48px;
-      position: relative;
-      min-height: 240px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    .testimonial-card::before {
-      content: '"';
-      font-family: var(--font-display);
-      font-size: 120px;
-      color: var(--cobalt);
-      opacity: .3;
-      position: absolute;
-      top: -10px;
-      left: 32px;
-      line-height: 1;
-    }
-    .testimonial-text { font-size: 15px; line-height: 1.8; color: #ccc; position: relative; z-index: 1; }
-    .testimonial-author {
-      margin-top: 28px;
-      font-family: var(--font-mono);
-      font-size: 11px;
-      letter-spacing: .15em;
-      color: var(--lemon);
-    }
-    .swiper-pagination-bullet { background: var(--ink) !important; opacity: .3; }
-    .swiper-pagination-bullet-active { opacity: 1 !important; }
-
-    /* ─── OTHER COURSES ─── */
-    .other-courses {
-      background: var(--paper);
-      padding: 100px 80px;
-      border-top: 2px solid var(--ink);
-    }
-    .other-courses h2 {
-      font-family: var(--font-display);
-      font-size: clamp(36px, 4vw, 60px);
-      font-weight: 800;
-      letter-spacing: -.03em;
-      margin-bottom: 48px;
-    }
-    .courses-grid {
+    .cert-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 0;
-      border: 2px solid var(--ink);
+      gap: 1.25rem;
+      max-width: 860px;
+      margin: 0 auto;
     }
-    .course-card {
-      padding: 36px 30px;
-      border-right: 2px solid var(--ink);
-      text-decoration: none;
-      color: var(--ink);
-      display: block;
-      transition: background .25s, color .25s;
-      position: relative;
-    }
-    .course-card:nth-child(4n) { border-right: none; }
-    .course-card:nth-child(n+5) { border-top: 2px solid var(--ink); }
-    .course-card:hover { background: var(--cobalt); color: #fff; }
-    .course-card:hover .course-desc { color: rgba(255,255,255,.7); }
-    .course-card:hover .course-arrow { color: var(--lemon); }
-    .course-arrow { font-size: 22px; margin-bottom: 20px; display: block; transition: color .2s; }
-    .course-card h4 { font-family: var(--font-display); font-size: 18px; font-weight: 700; letter-spacing: -.01em; margin-bottom: 12px; }
-    .course-desc { font-size: 13px; line-height: 1.65; color: var(--mid); }
 
-    /* ─── FOOTER ─── */
-    footer {
-      background: var(--ink);
-      color: #aaa;
-      padding: 80px;
-    }
-    .footer-inner {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1.5fr 2fr;
-      gap: 60px;
-      border-bottom: 1px solid rgba(255,255,255,.1);
-      padding-bottom: 60px;
-    }
-    .footer-logo {
-      font-family: var(--font-display);
-      font-size: 28px;
-      font-weight: 800;
-      letter-spacing: -.03em;
-      color: #fff;
-      margin-bottom: 16px;
-    }
-    .footer-logo span { color: var(--cobalt-light); }
-    .footer-tagline { font-size: 13px; line-height: 1.7; color: #666; }
-    footer h5 {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: #fff;
-      margin-bottom: 20px;
-    }
-    .footer-links { list-style: none; }
-    .footer-links li { margin-bottom: 10px; }
-    .footer-links a { color: #888; text-decoration: none; font-size: 14px; transition: color .2s; }
-    .footer-links a:hover { color: var(--lemon); }
-    .footer-contact-item { font-size: 13px; margin-bottom: 10px; line-height: 1.5; }
-    .footer-contact-item a { color: #888; text-decoration: none; }
-    .footer-contact-item a:hover { color: var(--lemon); }
-    .footer-bottom {
+    .cert-card {
+      background: #fff;
+      border: 1px solid #e8e8e8;
+      border-radius: 14px;
+      padding: 2rem 1rem 1.5rem;
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
       align-items: center;
-      padding-top: 32px;
-      font-size: 13px;
+      justify-content: center;
+      gap: 12px;
+      transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: default;
     }
-    .footer-bottom a { color: #888; text-decoration: none; }
-    .footer-socials { display: flex; gap: 16px; }
-    .footer-socials a { color: #666; font-size: 18px; text-decoration: none; transition: color .2s; }
-    .footer-socials a:hover { color: var(--lemon); }
 
-    /* UTILITY */
-    .text-cobalt { color: var(--cobalt); }
-    .mb-0 { margin-bottom: 0; }
-
-    /* ─── RESPONSIVE ─── */
-    @media (max-width: 1100px) {
-      .hero { grid-template-columns: 1fr; }
-      .hero-right { min-height: 50vw; }
-      .highlight-grid { grid-template-columns: repeat(2, 1fr); }
-      .opp-row, .different-section, .intern-inner { grid-template-columns: 1fr; }
-      .opp-row.reverse { direction: ltr; }
-      .gain-grid { grid-template-columns: repeat(2, 1fr); }
-      .gain-card:nth-child(3n) { border-right: 2px solid var(--ink); }
-      .gain-card:nth-child(2n) { border-right: none; }
-      .courses-grid { grid-template-columns: repeat(2, 1fr); }
-      .course-card:nth-child(2n) { border-right: none; }
-      .course-card:nth-child(4n) { border-right: 2px solid var(--ink); }
-      .footer-inner { grid-template-columns: 1fr 1fr; }
-      .skills-section { grid-template-columns: 1fr; padding: 60px 40px; }
+    .cert-card:hover {
+      border-color: #ccc;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.07);
     }
-    @media (max-width: 768px) {
-      .topbar { flex-direction: column; gap: 8px; font-size: 11px; }
-      header { padding: 0 20px; }
-      nav { display: none; }
-      .hero-left { padding: 60px 28px; }
-      .highlights, .gain-section, .other-courses, .modules-section, .internship, .careers { padding: 60px 24px; }
-      .highlight-grid, .gain-grid, .courses-grid { grid-template-columns: 1fr; }
-      .hl-card, .gain-card, .course-card { border-right: none !important; }
-      .diff-left { padding: 60px 28px; }
-      .diff-right { padding: 40px 28px; }
-      footer { padding: 60px 24px; }
-      .footer-inner { grid-template-columns: 1fr; gap: 40px; }
-      .opp-text { padding: 40px 28px; }
-      .opp-header { padding: 60px 28px; }
-      .swiper { padding: 0 24px 60px !important; }
+
+    .cert-logo {
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cert-name {
+      font-size: 12px;
+      font-weight: 500;
+      color: #888;
+      letter-spacing: 0.02em;
+    }
+
+    @media (max-width: 700px) {
+      .cert-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 400px) {
+      .cert-grid {
+        grid-template-columns: 1fr 1fr;
+      }
     }
   </style>
 </head>
 <body>
 
-<!-- TOP BAR -->
-<div class="topbar">
-  <div class="topbar-left">
-    <a href="tel:+916282437109">+91 6282 437 109</a>
-    &nbsp;|&nbsp;
-    <a href="tel:+919746905919">+91 9746 905 919</a>
-    &nbsp;|&nbsp;
-    <a href="mailto:admissions@xeneducation.in">admissions@xeneducation.in</a>
-  </div>
-  <div class="topbar-socials" style="display:flex;align-items:center;gap:4px;">
-    <span style="letter-spacing:.1em;margin-right:6px;">FOLLOW:</span>
-    <a href="https://www.instagram.com/xeneducation/" target="_blank">IG</a>
-    <a href="https://www.facebook.com/xeneducationbathery" target="_blank">FB</a>
-    <a href="https://www.linkedin.com/company/xen-education/" target="_blank">LI</a>
-  </div>
-</div>
+<section class="cert-section">
+  <h2>List of Certifications</h2>
+  <p>At Xen Education, we provide comprehensive training to help students achieve industry-recognized certifications. Our offerings with industry giants will give them the credentials to excel in their chosen fields.</p>
 
-<!-- HEADER -->
-<header>
-  <div class="header-inner">
-    <a href="index.html" class="logo-text">Xen<span>Education</span></a>
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="About.html">About</a></li>
-        <li><a href="courses.html">Courses</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-    <a href="contact.html" class="btn-apply">Apply Now →</a>
-  </div>
-</header>
+  <div class="cert-grid">
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-left">
-    <p class="hero-eyebrow">Xen Education · Creative Graphics</p>
-    <h1 class="hero-title">
-      Design<br>your<br><em>future</em>
-    </h1>
-    <p class="hero-sub">Master the art of visual communication at Wayanad's most comprehensive creative design institute.</p>
-    <div class="hero-cta">
-      <a href="contact.html" class="btn-apply">Enrol Today</a>
-      <a href="#highlights" class="btn-outline">View Course →</a>
+    <!-- Google Ads -->
+    <div class="cert-card">
+      <div class="cert-logo">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="24,6 40,34 24,34" fill="#4285F4"/>
+          <polygon points="8,34 24,6 24,34" fill="#FBBC04"/>
+          <circle cx="24" cy="40" r="6" fill="#34A853"/>
+        </svg>
+      </div>
+      <span class="cert-name">Google Ads</span>
     </div>
-  </div>
-  <div class="hero-right">
-    <img src="assets/images/creative/C-1.png" alt="Creative Design" />
+
+    <!-- Google Analytics -->
+    <div class="cert-card">
+      <div class="cert-logo">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="6"  y="28" width="10" height="14" rx="2" fill="#E37400" opacity="0.4"/>
+          <rect x="19" y="18" width="10" height="24" rx="2" fill="#E37400" opacity="0.7"/>
+          <rect x="32" y="6"  width="10" height="36" rx="2" fill="#E37400"/>
+        </svg>
+      </div>
+      <span class="cert-name">Google Analytics</span>
+    </div>
+
+    <!-- Google Digital Garage -->
+    <div class="cert-card">
+      <div class="cert-logo">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="4"  y="4"  width="18" height="18" rx="2" fill="#4285F4"/>
+          <rect x="26" y="4"  width="18" height="18" rx="2" fill="#EA4335"/>
+          <rect x="4"  y="26" width="18" height="18" rx="2" fill="#FBBC05"/>
+          <rect x="26" y="26" width="18" height="18" rx="2" fill="#34A853"/>
+        </svg>
+      </div>
+      <span class="cert-name">Google Digital Garage</span>
+    </div>
+
+    <!-- Microsoft Advertising -->
+    <div class="cert-card">
+      <div class="cert-logo">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="4"  y="4"  width="18" height="18" fill="#F25022"/>
+          <rect x="26" y="4"  width="18" height="18" fill="#7FBA00"/>
+          <rect x="4"  y="26" width="18" height="18" fill="#00A4EF"/>
+          <rect x="26" y="26" width="18" height="18" fill="#FFB900"/>
+        </svg>
+      </div>
+      <span class="cert-name">Microsoft Advertising</span>
+    </div>
+
+    <!-- Semrush -->
+    <div class="cert-card">
+      <div class="cert-logo">
+        <svg width="56" height="32" viewBox="0 0 56 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="14" cy="16" r="12" fill="#FF642D"/>
+          <circle cx="14" cy="16" r="6"  fill="#fff"/>
+          <text x="30" y="21" font-family="DM Sans,sans-serif" font-weight="700" font-size="14" fill="#FF642D">SEM</text>
+        </svg>
+      </div>
+      <span class="cert-name">Semrush</span>
+    </div>
+
+    <!-- HubSpot -->
+    <div class="cert-card">
+      <div class="cert-logo">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="34" cy="14" r="8" fill="#FF7A59"/>
+          <rect x="6"  y="14" width="6" height="22" rx="2" fill="#33475B"/>
+          <rect x="6"  y="21" width="18" height="6" rx="2" fill="#33475B"/>
+          <rect x="18" y="14" width="6" height="22" rx="2" fill="#33475B"/>
+        </svg>
+      </div>
+      <span class="cert-name">HubSpot</span>
+    </div>
+
+    <!-- STED -->
+    <div class="cert-card">
+      <div class="cert-logo">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="24" cy="24" r="20" fill="none" stroke="#c0392b" stroke-width="2.5"/>
+          <circle cx="24" cy="24" r="14" fill="none" stroke="#c0392b" stroke-width="1.5"/>
+          <text x="24" y="28" text-anchor="middle" font-family="DM Sans,sans-serif" font-weight="700" font-size="10" fill="#c0392b">STED</text>
+        </svg>
+      </div>
+      <span class="cert-name">STED Council</span>
+    </div>
+
+    <!-- Xen Certified -->
+    <div class="cert-card">
+      <div class="cert-logo">
+        <svg width="56" height="36" viewBox="0 0 56 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="2" width="52" height="32" rx="4" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
+          <text x="28" y="18" text-anchor="middle" font-family="DM Sans,sans-serif" font-weight="600" font-size="12" fill="#1a1a1a">Xen</text>
+          <text x="28" y="28" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" letter-spacing="1" fill="#888">CERTIFIED</text>
+        </svg>
+      </div>
+      <span class="cert-name">Xen Certified</span>
+    </div>
+
   </div>
 </section>
 
-<!-- COURSE HIGHLIGHTS -->
-<section class="highlights container" id="highlights">
-  <div class="highlights-head">
-    <p class="section-label">// Course Highlights</p>
-    <h2 class="section-title">Everything you <em>need</em></h2>
-  </div>
-  <div class="highlight-grid">
-    <div class="hl-card">
-      <div class="hl-num">6</div>
-      <div class="hl-unit">Months Total</div>
-      <div class="hl-title">Course Duration</div>
-      <p class="hl-desc">4-month intensive training followed by a 2-month hands-on internship with real-world project exposure.</p>
-    </div>
-    <div class="hl-card">
-      <div class="hl-num">62+</div>
-      <div class="hl-unit">Modules</div>
-      <div class="hl-title">Comprehensive Curriculum</div>
-      <p class="hl-desc">Structured training from design fundamentals to advanced creative techniques and industry workflows.</p>
-    </div>
-    <div class="hl-card">
-      <div class="hl-num">100+</div>
-      <div class="hl-unit">Industry Tools</div>
-      <div class="hl-title">Software Mastery</div>
-      <p class="hl-desc">Master over 100 industry-standard tools used by professionals worldwide. Graduate fully job-ready.</p>
-    </div>
-    <div class="hl-card">
-      <div class="hl-num">₹20k</div>
-      <div class="hl-unit">All Inclusive</div>
-      <div class="hl-title">Transparent Fees</div>
-      <p class="hl-desc">A single flat fee — no hidden charges. The most accessible path to a professional design career in Wayanad.</p>
-    </div>
-  </div>
-  <div class="highlights-cta">
-    <a href="contact.html" class="btn-apply">Enrol in This Course →</a>
-  </div>
-</section>
-
-<!-- IMPROVE SKILLS -->
-<section class="skills-section">
-  <div class="skills-sticky">
-    <p class="section-label">// A New Approach</p>
-    <h2>A different way to grow.</h2>
-    <p>We believe the best designers learn by doing. Our approach immerses you in real projects, real tools, and real client feedback from day one.</p>
-    <img src="assets/images/creative/crt.png" alt="Design" />
-  </div>
-  <div class="skills-content">
-    <h2>Practical Skills for the Real World</h2>
-    <p>Explore an innovative pathway to elevate your expertise in creative design. Xen Education offers a fresh approach to enriching your creative design abilities. Our goal is to develop practical skills that are in high demand in the ever-evolving creative design industry.</p>
-    <p>Hands-on experiences empower students to implement these strategies effectively in real-world design projects. With our guidance, you will master design tools, grasp the difficulties of visual communication, and become an expert in creative design. It's a modern path to unlock your creativity and launch a successful career.</p>
-    <a href="contact.html" class="btn-apply">Start Your Journey →</a>
-  </div>
-</section>
-
-<!-- OPPORTUNITIES -->
-<div class="opp-header">
-  <h2>Window of Opportunities</h2>
-  <p>Your creative skills can open doors to countless rewarding careers across design, media, and technology.</p>
-</div>
-
-<div class="opp-rows">
-  <div class="opp-row">
-    <div class="opp-img">
-      <img src="assets/images/creative/create-1.png" alt="Graphic Designer" />
-    </div>
-    <div class="opp-text">
-      <div class="opp-num">01</div>
-      <h3 class="opp-title">Graphic Designer</h3>
-      <span class="opp-role">Visual Communication</span>
-      <p class="opp-desc">Start your journey as a graphic designer with Xen Education. Unleash your creativity and learn visual storytelling. Our program immerses you in the graphic arts industry, giving you the skills to craft an excellent portfolio and master the latest design trends.</p>
-    </div>
-  </div>
-  <div class="opp-row reverse">
-    <div class="opp-img">
-      <img src="assets/images/creative/create-2.png" alt="Art Director" />
-    </div>
-    <div class="opp-text">
-      <div class="opp-num">02</div>
-      <h3 class="opp-title">Art Director</h3>
-      <span class="opp-role">Creative Leadership</span>
-      <p class="opp-desc">Cultivate your artistic vision, master fundamental design principles, and navigate the dynamic realm of graphic communication. You will acquire a diversified skill set with mentorship from seasoned industry professionals and hands-on experience.</p>
-    </div>
-  </div>
-  <div class="opp-row">
-    <div class="opp-img">
-      <img src="assets/images/creative/create-3.png" alt="Branding Designer" />
-    </div>
-    <div class="opp-text">
-      <div class="opp-num">03</div>
-      <h3 class="opp-title">Branding Designer</h3>
-      <span class="opp-role">Brand Identity</span>
-      <p class="opp-desc">Gain a thorough understanding of the art and science of branding. Explore logo design, brand strategy, and marketing communication as you build brands that people will remember. Position yourself as a highly sought-after branding designer.</p>
-    </div>
-  </div>
-  <div class="opp-row reverse">
-    <div class="opp-img">
-      <img src="assets/images/creative/create-4.png" alt="Motion Designer" />
-    </div>
-    <div class="opp-text">
-      <div class="opp-num">04</div>
-      <h3 class="opp-title">Motion Designer</h3>
-      <span class="opp-role">Animation & Motion</span>
-      <p class="opp-desc">Become an expert in the visually captivating art of motion graphics and animation storytelling. Hands-on training in the newest industry-standard software enables you to create eye-catching ads, user interfaces, and immersive video content.</p>
-    </div>
-  </div>
-  <div class="opp-row">
-    <div class="opp-img">
-      <img src="assets/images/creative/create-5.png" alt="Print Production" />
-    </div>
-    <div class="opp-text">
-      <div class="opp-num">05</div>
-      <h3 class="opp-title">Print Production</h3>
-      <span class="opp-role">Print Media</span>
-      <p class="opp-desc">From understanding printing technologies to honing your design skills for print — you'll be well-prepared to begin a rewarding career where meticulous attention to detail and boundless creativity collide to bring ideas to life.</p>
-    </div>
-  </div>
-</div>
-
-<!-- CAREERS CHIPS -->
-<section class="careers">
-  <div class="careers-inner">
-    <h2>Opportunities are<br>Unlimited</h2>
-    <div class="chips">
-      <div class="chip"><span class="chip-dot"></span>Graphic Designer</div>
-      <div class="chip"><span class="chip-dot"></span>Art Director</div>
-      <div class="chip"><span class="chip-dot"></span>UI/UX Designer</div>
-      <div class="chip"><span class="chip-dot"></span>Branding Designer</div>
-      <div class="chip"><span class="chip-dot"></span>Print Production</div>
-      <div class="chip"><span class="chip-dot"></span>Creative Director</div>
-      <div class="chip"><span class="chip-dot"></span>Motion Designer</div>
-      <div class="chip"><span class="chip-dot"></span>Interior Designer</div>
-    </div>
-  </div>
-</section>
-
-<!-- MODULES -->
-<section class="modules-section">
-  <p class="section-label">// Full Curriculum</p>
-  <h2 class="section-title" style="color:#fff;">List of <em>Modules</em></h2>
-  <div class="mod-tabs">
-    <button class="mod-tab active" data-mod="mod1">Fundamentals</button>
-    <button class="mod-tab" data-mod="mod2">Branding</button>
-    <button class="mod-tab" data-mod="mod3">Layout</button>
-    <button class="mod-tab" data-mod="mod4">Digital Tools</button>
-    <button class="mod-tab" data-mod="mod5">Extensions</button>
-  </div>
-
-  <div id="mod1" class="mod-content active">
-    <h3>Fundamentals of Graphic Design</h3>
-    <div class="mod-grid">
-      <div class="mod-item"><span class="mod-item-num">01</span>Road Map to Graphic Design</div>
-      <div class="mod-item"><span class="mod-item-num">02</span>Typography Hierarchy</div>
-      <div class="mod-item"><span class="mod-item-num">03</span>Illustrations</div>
-      <div class="mod-item"><span class="mod-item-num">04</span>Color Theory</div>
-      <div class="mod-item"><span class="mod-item-num">05</span>Visual Design</div>
-      <div class="mod-item"><span class="mod-item-num">06</span>Handling Negative Space</div>
-      <div class="mod-item"><span class="mod-item-num">07</span>Balance And Proportion</div>
-      <div class="mod-item"><span class="mod-item-num">08</span>Contrast And Emphasis</div>
-      <div class="mod-item"><span class="mod-item-num">09</span>Alignment And Spacing</div>
-      <div class="mod-item"><span class="mod-item-num">10</span>Minimalism</div>
-      <div class="mod-item"><span class="mod-item-num">11</span>Infographics</div>
-      <div class="mod-item"><span class="mod-item-num">12</span>Material Design</div>
-    </div>
-  </div>
-  <div id="mod2" class="mod-content">
-    <h3>Branding &amp; Identity</h3>
-    <div class="mod-grid">
-      <div class="mod-item"><span class="mod-item-num">13</span>Branding</div>
-      <div class="mod-item"><span class="mod-item-num">14</span>Prototyping</div>
-      <div class="mod-item"><span class="mod-item-num">15</span>Pen Tablet Training</div>
-      <div class="mod-item"><span class="mod-item-num">16</span>Web Media</div>
-      <div class="mod-item"><span class="mod-item-num">17</span>Wireframing</div>
-      <div class="mod-item"><span class="mod-item-num">18</span>Creativity Enhancing Games</div>
-      <div class="mod-item"><span class="mod-item-num">19</span>Internship</div>
-      <div class="mod-item"><span class="mod-item-num">20</span>User Experience Design</div>
-      <div class="mod-item"><span class="mod-item-num">21</span>Packaging Design</div>
-      <div class="mod-item"><span class="mod-item-num">22</span>Logo Design</div>
-      <div class="mod-item"><span class="mod-item-num">23</span>Composition</div>
-      <div class="mod-item"><span class="mod-item-num">24</span>Brand Guidelines</div>
-      <div class="mod-item"><span class="mod-item-num">25</span>Vectorization</div>
-      <div class="mod-item"><span class="mod-item-num">26</span>Poster Design</div>
-      <div class="mod-item"><span class="mod-item-num">27</span>Brochure Design</div>
-    </div>
-  </div>
-  <div id="mod3" class="mod-content">
-    <h3>Layout &amp; Composition</h3>
-    <div class="mod-grid">
-      <div class="mod-item"><span class="mod-item-num">28</span>Balance</div>
-      <div class="mod-item"><span class="mod-item-num">29</span>Contrast</div>
-      <div class="mod-item"><span class="mod-item-num">30</span>Iconography</div>
-      <div class="mod-item"><span class="mod-item-num">31</span>Sketching</div>
-      <div class="mod-item"><span class="mod-item-num">32</span>Usability Testing</div>
-      <div class="mod-item"><span class="mod-item-num">33</span>Editorial Design</div>
-      <div class="mod-item"><span class="mod-item-num">34</span>Alignment</div>
-      <div class="mod-item"><span class="mod-item-num">35</span>Scale</div>
-      <div class="mod-item"><span class="mod-item-num">36</span>Print Design</div>
-      <div class="mod-item"><span class="mod-item-num">37</span>Information Architecture</div>
-      <div class="mod-item"><span class="mod-item-num">38</span>Illustration Techniques</div>
-      <div class="mod-item"><span class="mod-item-num">39</span>Prototype</div>
-      <div class="mod-item"><span class="mod-item-num">40</span>Mockup</div>
-    </div>
-  </div>
-  <div id="mod4" class="mod-content">
-    <h3>Digital Tools &amp; Techniques</h3>
-    <div class="mod-grid">
-      <div class="mod-item"><span class="mod-item-num">41</span>Image Manipulation</div>
-      <div class="mod-item"><span class="mod-item-num">42</span>Mood Boards</div>
-      <div class="mod-item"><span class="mod-item-num">43</span>Color Correction</div>
-      <div class="mod-item"><span class="mod-item-num">44</span>Product Design</div>
-      <div class="mod-item"><span class="mod-item-num">45</span>Calligraphy</div>
-      <div class="mod-item"><span class="mod-item-num">46</span>Visual Hierarchy</div>
-      <div class="mod-item"><span class="mod-item-num">47</span>Digital Painting</div>
-      <div class="mod-item"><span class="mod-item-num">48</span>Photographic Technique</div>
-      <div class="mod-item"><span class="mod-item-num">49</span>Color Palette</div>
-      <div class="mod-item"><span class="mod-item-num">50</span>DPI</div>
-      <div class="mod-item"><span class="mod-item-num">51</span>Lettering</div>
-      <div class="mod-item"><span class="mod-item-num">52</span>Blending Modes</div>
-      <div class="mod-item"><span class="mod-item-num">53</span>Masking</div>
-      <div class="mod-item"><span class="mod-item-num">54</span>Layers</div>
-      <div class="mod-item"><span class="mod-item-num">55</span>Flyer Design</div>
-    </div>
-  </div>
-  <div id="mod5" class="mod-content">
-    <h3>Branding Extensions</h3>
-    <div class="mod-grid">
-      <div class="mod-item"><span class="mod-item-num">56</span>RGB</div>
-      <div class="mod-item"><span class="mod-item-num">57</span>CMYK</div>
-      <div class="mod-item"><span class="mod-item-num">58</span>Brochure</div>
-      <div class="mod-item"><span class="mod-item-num">59</span>Logo Evolution</div>
-      <div class="mod-item"><span class="mod-item-num">60</span>Icon Design</div>
-      <div class="mod-item"><span class="mod-item-num">61</span>Brushes</div>
-      <div class="mod-item"><span class="mod-item-num">62</span>Brush Lettering</div>
-      <div class="mod-item"><span class="mod-item-num">63</span>Portfolio Creation</div>
-    </div>
-  </div>
-</section>
-
-<!-- WHAT MAKES US DIFFERENT -->
-<section class="different-section">
-  <div class="diff-left">
-    <div>
-      <h2>What Makes Us Different</h2>
-      <p>Our teaching philosophy is built on doing, not just knowing — every day brings new challenges, real clients, and measurable growth.</p>
-    </div>
-    <img src="assets/images/creative/cc2bg.png" alt="Different" />
-  </div>
-  <div class="diff-right">
-    <div class="diff-item open">
-      <div class="diff-header">
-        <h4>Practical Learning</h4>
-        <span class="diff-arrow">+</span>
-      </div>
-      <p class="diff-body">We prioritize practical learning as the core of our approach. We go beyond theory, providing hands-on experiences that empower students to apply their knowledge in real-world scenarios.</p>
-    </div>
-    <div class="diff-item">
-      <div class="diff-header">
-        <h4>Daily Exams</h4>
-        <span class="diff-arrow">+</span>
-      </div>
-      <p class="diff-body">Xen Education bridges the gap between learning and practice through daily exams. Students take theoretical and practical exams daily to enhance their academic excellence.</p>
-    </div>
-    <div class="diff-item">
-      <div class="diff-header">
-        <h4>Working For Real Clients</h4>
-        <span class="diff-arrow">+</span>
-      </div>
-      <p class="diff-body">One of the key elements that sets Xen Education apart is providing students the opportunity to work with real clients and actively participate in genuine client projects.</p>
-    </div>
-    <div class="diff-item">
-      <div class="diff-header">
-        <h4>Placement Assistance</h4>
-        <span class="diff-arrow">+</span>
-      </div>
-      <p class="diff-body">Our 100% placement assistance program includes mock interviews, resume preparation, and industry connections to ensure you're well-prepared for success.</p>
-    </div>
-    <div class="diff-item">
-      <div class="diff-header">
-        <h4>Internship Opportunity</h4>
-        <span class="diff-arrow">+</span>
-      </div>
-      <p class="diff-body">A two-month internship program where students work on real-world projects, applying their theoretical knowledge in practical professional settings.</p>
-    </div>
-    <div class="diff-item">
-      <div class="diff-header">
-        <h4>Focus on Innovation</h4>
-        <span class="diff-arrow">+</span>
-      </div>
-      <p class="diff-body">We encourage innovative thinking and creativity, fostering an environment where students can explore new ideas and cutting-edge methodologies.</p>
-    </div>
-  </div>
-</section>
-
-<!-- WHAT YOU'LL GAIN -->
-<section class="gain-section">
-  <div class="gain-head">
-    <p class="section-label">// Course Outcomes</p>
-    <h2>What You'll Gain</h2>
-  </div>
-  <div class="gain-grid">
-    <div class="gain-card">
-      <div class="gain-num">01</div>
-      <h3>Expertise in Graphic Design</h3>
-      <p>A broad skill set that equips you for a career in design. You'll discover how to realize imaginative concepts and master the craft of visual storytelling with software proficiency.</p>
-    </div>
-    <div class="gain-card">
-      <div class="gain-num">02</div>
-      <h3>Mastery of UI/UX Design</h3>
-      <p>Create engaging, user-centric digital experiences. You'll learn to build user-friendly interfaces, conduct UX research, and create interactive designs that delight users.</p>
-    </div>
-    <div class="gain-card">
-      <div class="gain-num">03</div>
-      <h3>Advanced Software Proficiency</h3>
-      <p>Expertise in industry-standard tools like Adobe Creative Suite. Transform your creative concepts into reality — from striking graphics to compelling marketing materials.</p>
-    </div>
-    <div class="gain-card">
-      <div class="gain-num">04</div>
-      <h3>Branding & Identity Design</h3>
-      <p>Craft visually appealing brand identities that resonate with your target audience — going beyond grabbing attention to building a lasting connection.</p>
-    </div>
-    <div class="gain-card">
-      <div class="gain-num">05</div>
-      <h3>Web & Mobile App Design</h3>
-      <p>With a solid foundation in design principles, UX, and UI — master the skills to create captivating digital experiences for web and mobile platforms.</p>
-    </div>
-    <div class="gain-card">
-      <div class="gain-num">06</div>
-      <h3>Design Thinking</h3>
-      <p>Cultivate a human-centered, innovative mindset. Learn to empathize with your audience, reframe problems, ideate unconventional solutions, and prototype rapidly.</p>
-    </div>
-  </div>
-</section>
-
-<!-- INTERNSHIP -->
-<section class="internship">
-  <div class="intern-inner">
-    <div class="intern-left">
-      <h2>Enriching Internship Program</h2>
-      <p>We offer exhilarating internships guided by seasoned professionals. Gain hands-on experience, harness industry insights, and propel your career forward under the mentorship of experts.</p>
-      <div class="intern-tags">
-        <span class="intern-tag">Mentorship & Guidance</span>
-        <span class="intern-tag">Career Growth</span>
-        <span class="intern-tag">Industry Certifications</span>
-        <span class="intern-tag">AI-Driven Learning</span>
-        <span class="intern-tag">Industry Insight</span>
-        <span class="intern-tag">Networking</span>
-        <span class="intern-tag">Real-time Environment</span>
-        <span class="intern-tag">Skill Development</span>
-        <span class="intern-tag">Potential Job Offers</span>
-        <span class="intern-tag">Hands-on Projects</span>
-      </div>
-    </div>
-    <div class="intern-right" style="text-align:center;">
-      <div style="border: 1.5px solid rgba(255,255,255,.2); padding: 60px 40px;">
-        <p style="font-family:var(--font-mono);font-size:11px;letter-spacing:.2em;opacity:.6;margin-bottom:16px;">INTERNSHIP DURATION</p>
-        <p style="font-family:var(--font-display);font-size:100px;font-weight:800;letter-spacing:-.05em;line-height:1;color:var(--lemon);">2</p>
-        <p style="font-family:var(--font-display);font-size:28px;font-weight:700;margin-top:-4px;">Months</p>
-        <p style="font-size:14px;opacity:.7;margin-top:16px;line-height:1.7;">Real-world projects with professional mentorship. Apply your skills in a live studio environment.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section class="testimonials">
-  <p class="section-label">// Student Reviews</p>
-  <h2>What Our Students Say</h2>
-  <div class="swiper mySwiper">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide">
-        <div class="testimonial-card">
-          <p class="testimonial-text">I am extremely thankful for Xen Education's educational experience. The instructors, curriculum, and learning environment are truly excellent. Best for graphic design in Wayanad.</p>
-          <p class="testimonial-author">— Akhil</p>
-        </div>
-      </div>
-      <div class="swiper-slide">
-        <div class="testimonial-card">
-          <p class="testimonial-text">Xen Education was the catalyst for my professional growth. Their exemplary placement assistance and invaluable practical learning completely transformed my career.</p>
-          <p class="testimonial-author">— Jakson Jose</p>
-        </div>
-      </div>
-      <div class="swiper-slide">
-        <div class="testimonial-card">
-          <p class="testimonial-text">Xen Education's focus on practical experience in their Certified Graphic Design course was truly impressive. It gave me the confidence to excel in the ever-changing field of digital marketing.</p>
-          <p class="testimonial-author">— Mubee Mubi</p>
-        </div>
-      </div>
-      <div class="swiper-slide">
-        <div class="testimonial-card">
-          <p class="testimonial-text">The internship at Xen Education stood out. Real-client projects bridged theory and practice, boosting my confidence in applying my skills. I highly recommend this course.</p>
-          <p class="testimonial-author">— Nasilin Jahan</p>
-        </div>
-      </div>
-      <div class="swiper-slide">
-        <div class="testimonial-card">
-          <p class="testimonial-text">The Graphic Design Course at Xen Education is exceptional. The hands-on experience and real-world projects are a game-changer, making it the top choice for graphic design excellence.</p>
-          <p class="testimonial-author">— Annie John</p>
-        </div>
-      </div>
-    </div>
-    <div class="swiper-pagination"></div>
-  </div>
-</section>
-
-<!-- OTHER COURSES -->
-<section class="other-courses">
-  <p class="section-label">// Keep Exploring</p>
-  <h2>Other Courses</h2>
-  <div class="courses-grid">
-    <a href="digital.html" class="course-card">
-      <span class="course-arrow">→</span>
-      <h4>Digital Marketing</h4>
-      <p class="course-desc">Online advertising, promoting, and engaging with customers via digital channels such as websites, social media, and email.</p>
-    </a>
-    <a href="fullstack.html" class="course-card">
-      <span class="course-arrow">→</span>
-      <h4>Full Stack Development</h4>
-      <p class="course-desc">Creating front-end and back-end parts of web applications, enabling end-to-end functionality and user interaction.</p>
-    </a>
-    <a href="uiux-dev.html" class="course-card">
-      <span class="course-arrow">→</span>
-      <h4>UI/UX Design & Dev</h4>
-      <p class="course-desc">Visual design, user experience, and hands-on skills to build engaging, user-friendly web applications.</p>
-    </a>
-    <a href="multimedia.html" class="course-card">
-      <span class="course-arrow">→</span>
-      <h4>Multimedia & Animation</h4>
-      <p class="course-desc">Combining graphics, images, videos, sound, and motion effects into dynamic visual presentations.</p>
-    </a>
-    <a href="phpdev.html" class="course-card">
-      <span class="course-arrow">→</span>
-      <h4>PHP Development</h4>
-      <p class="course-desc">Server-side scripts and applications for dynamic web content, data processing, and client-server communication.</p>
-    </a>
-    <a href="node.html" class="course-card">
-      <span class="course-arrow">→</span>
-      <h4>Node JS Development</h4>
-      <p class="course-desc">Building server-side applications using JavaScript, enabling full-stack development and seamless user experiences.</p>
-    </a>
-    <a href="python.html" class="course-card">
-      <span class="course-arrow">→</span>
-      <h4>Python Development</h4>
-      <p class="course-desc">Creating applications and systems using Python — a versatile, high-level language powering the modern tech world.</p>
-    </a>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-inner">
-    <div>
-      <div class="footer-logo">Xen<span>Education</span></div>
-      <p class="footer-tagline">Digital Marketing · Creative Graphics · Web Development<br><br>Empowering students with career-focused training and industry-recognized certifications.</p>
-    </div>
-    <div>
-      <h5>Quick Links</h5>
-      <ul class="footer-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="About.html">About</a></li>
-        <li><a href="courses.html">Courses</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </div>
-    <div>
-      <h5>Courses</h5>
-      <ul class="footer-links">
-        <li><a href="creative.html">Creative Graphics</a></li>
-        <li><a href="digital.html">Digital Marketing</a></li>
-        <li><a href="uiux-dev.html">UI/UX Design</a></li>
-        <li><a href="fullstack.html">Full Stack</a></li>
-        <li><a href="multimedia.html">Multimedia</a></li>
-        <li><a href="phpdev.html">PHP Development</a></li>
-        <li><a href="node.html">Node.js</a></li>
-        <li><a href="python.html">Python</a></li>
-      </ul>
-    </div>
-    <div>
-      <h5>Get in Touch</h5>
-      <p class="footer-contact-item"><a href="tel:+916282437109">(+91) 6282 437 109</a></p>
-      <p class="footer-contact-item"><a href="tel:+919746905919">(+91) 9746 905 919</a></p>
-      <p class="footer-contact-item"><a href="mailto:admissions@xeneducation.in">admissions@xeneducation.in</a></p>
-      <p class="footer-contact-item">Chulliyode Road, Sultan Bathery,<br>Wayanad, Kerala 673592</p>
-      <p class="footer-contact-item">Mon–Sat: 9:00 am – 6:00 pm</p>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <p>© <span id="yr"></span> <strong style="color:#fff;">Xen Education</strong>. All Rights Reserved. Developed by <a href="https://xeventure.com/" target="_blank">Xeventure</a>.</p>
-    <div class="footer-socials">
-      <a href="https://www.instagram.com/xeneducation/" target="_blank">IG</a>
-      <a href="https://www.facebook.com/xeneducationbathery" target="_blank">FB</a>
-      <a href="https://x.com/Xen_education" target="_blank">TW</a>
-      <a href="https://www.linkedin.com/company/xen-education/" target="_blank">LI</a>
-      <a href="https://www.youtube.com/@xeneducation" target="_blank">YT</a>
-    </div>
-  </div>
-</footer>
-
-<script>
-  document.getElementById('yr').textContent = new Date().getFullYear();
-
-  // Module tabs
-  document.querySelectorAll('.mod-tab').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.mod-tab').forEach(b => b.classList.remove('active'));
-      document.querySelectorAll('.mod-content').forEach(c => c.classList.remove('active'));
-      btn.classList.add('active');
-      document.getElementById(btn.dataset.mod).classList.add('active');
-    });
-  });
-
-  // Accordion
-  document.querySelectorAll('.diff-header').forEach(header => {
-    header.addEventListener('click', () => {
-      const item = header.parentElement;
-      const isOpen = item.classList.contains('open');
-      document.querySelectorAll('.diff-item').forEach(i => i.classList.remove('open'));
-      if (!isOpen) item.classList.add('open');
-    });
-  });
-
-  // Swiper
-  new Swiper('.mySwiper', {
-    slidesPerView: 1,
-    spaceBetween: 24,
-    loop: true,
-    autoplay: { delay: 5000, disableOnInteraction: false },
-    pagination: { el: '.swiper-pagination', clickable: true },
-    breakpoints: { 768: { slidesPerView: 2 }, 1200: { slidesPerView: 3 } }
-  });
-</script>
 </body>
 </html>

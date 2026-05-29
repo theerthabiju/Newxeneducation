@@ -126,6 +126,39 @@
             }
         });
 
+
+         (function () {
+    const scrollBtn = document.querySelector(".scroll-up");
+    const circle = document.querySelector(".scroll-circle path");
+
+    if (!scrollBtn || !circle) return;
+
+    // Set up the SVG circle stroke for progress indicator
+    const circumference = circle.getTotalLength();
+    circle.style.strokeDasharray = circumference;
+    circle.style.strokeDashoffset = circumference;
+
+    window.addEventListener("scroll", function () {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = scrollTop / docHeight;
+
+      // Update circle progress
+      circle.style.strokeDashoffset = circumference - scrollPercent * circumference;
+
+      // Show/hide button
+      if (scrollTop > 300) {
+        scrollBtn.classList.add("open");
+      } else {
+        scrollBtn.classList.remove("open");
+      }
+    });
+
+    // Scroll to top on click
+    scrollBtn.addEventListener("click", function () {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  })();
         /*-- Price Range --*/
         function priceFilter() {
             if ($(".price-ranger").length) {
