@@ -102,7 +102,7 @@ body {
   position: absolute;
   bottom: -2px; left: 0; right: 0;
   height: 48px;
-  background: var(--light);
+  background: white;
   clip-path: ellipse(55% 100% at 50% 100%);
 }
 
