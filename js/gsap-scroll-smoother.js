@@ -1,11 +1,4 @@
-/*!
- * ScrollSmoother 3.11.4
- * https://greensock.com
- * 
- * @license Copyright 2022, GreenSock. All rights reserved.
- * This plugin is a membership benefit of Club GreenSock and is only authorized for use in sites/apps/products developed by individuals/companies with an active Club GreenSock membership. See https://greensock.com/club
- * @author: Jack Doyle, jack@greensock.com
- */
+
 
 ! function(e, t) {
     "object" == typeof exports && "undefined" != typeof module ? t(exports) : "function" == typeof define && define.amd ? define(["exports"], t) : t((e = e || self).window = e.window || {})
