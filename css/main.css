@@ -4462,7 +4462,7 @@ input.main-search-input::placeholder {
 
 @media (max-width: 1199px) {
   .about-1.style-2 .about-images-2 .shape-1 {
-    left: 0;
+   display: none;
   }
 }
 
@@ -5186,17 +5186,59 @@ input.main-search-input::placeholder {
     -ms-grid-columns: auto;
     grid-template-columns: auto;
   }
+  .service-1 .service-inner .single-service-item .content {
+  background-color: var(--white);
+  text-align: center;
+  padding: 25px 26px;
+  /* padding-top: 5px; */
+  position: absolute;
+  bottom: 0px;
+  width: calc(100% - 40px);
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  border-radius: 20px;
+  z-index: 2;
+}
+.service-1 .service-inner .single-service-item .content .icon {
+  width: 60px;
+  height: 60px;
+
+}
+.service-1 .service-inner .single-service-item .content h4 a {  
+    font-size: 12px;
 }
 
 .service-2 .service-inner .service-items .signle-service-item {
   position: relative;
   cursor: pointer;
 }
-
-@media (max-width: 767px) {
+.content p {
+  font-size: 10px;
+}
+.duration-list {
+      font-size: 10px;
+}
+.blog-1 .blog-inner .single-blog-item .content ul li:nth-child(3) {
+    color: var(--text);
+    font-size: 8px;
+}
+.section-title {
+    font-size: 22px;
+    text-align: start;
+    /* font-weight: 800; */
+    line-height: 1.1;
+    letter-spacing: -1.5px;
+    color: var(--ink);
+}
+.mail-contact{
+  font-size: 12px;
+}
   .service-2 .service-inner .service-items .signle-service-item {
     text-align: center;
   }
+
+
 }
 
 .service-2 .service-inner .service-items .signle-service-item::after {
@@ -12694,6 +12736,10 @@ p.sticky-label {
     row-gap: 10px;
     text-align: center;
   }
+  .footer-bottom .footer-bottom-wrapper p {
+  color: var(--white-3);
+  font-size: 8px;
+}
 }
 
 .footer-bottom.style-2 .footer-bottom-wrapper .security {
@@ -13069,7 +13115,7 @@ footer .gallery .footer-gallery-img:hover .content {
   padding-bottom: 10px;
 }
 .rs-banner.style10 .banner-content .sl-title {
-  font-size: 50px;
+  font-size: 30px;
   line-height: 70px;
   font-weight: 800;
   color: #020842;
@@ -14537,6 +14583,16 @@ footer .gallery .footer-gallery-img:hover .content {
   .courses-grid {
     grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   }
+  .c-head{
+    font-size: 36px;
+  }
+  .xen-banner-title {
+    font-size: 42px;
+    font-weight: 800;
+    line-height: 1.2;
+    color: #020842;
+    margin-bottom: 0;
+}
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
@@ -14609,7 +14665,8 @@ footer .gallery .footer-gallery-img:hover .content {
 
 @media (max-width: 400px) {
   .cert-grid {
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-wrap: wrap;
   }
 }
 
